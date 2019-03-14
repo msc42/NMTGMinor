@@ -611,7 +611,8 @@ class Translator(object):
         #  (1) convert words to indexes
         dataset = self.buildData(srcBatch, goldBatch)
         batch = dataset.next()[0]
-        batch.cuda()
+        if self.cuda:
+            batch.cuda()
         # ~ batch = self.to_variable(dataset.next()[0])
         src = batch.get('source')
         tgt_input = batch.get('target_input')
